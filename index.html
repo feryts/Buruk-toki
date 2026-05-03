@@ -21,8 +21,7 @@ body{font-family:'Nunito',sans-serif;background:var(--gray);color:var(--text);mi
 .topbar{background:var(--green);color:white;display:flex;align-items:center;justify-content:space-between;padding:13px 16px 11px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(76,175,80,0.35)}
 .topbar-left{display:flex;align-items:center;gap:9px}
 .hamburger-btn{background:none;border:none;color:white;font-size:26px;cursor:pointer;line-height:1;padding:0}
-.topbar-logo{width:38px;height:38px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.2);flex-shrink:0}
-.topbar-logo img{width:30px;height:30px;object-fit:contain}
+.topbar-logo{width:38px;height:38px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.2);flex-shrink:0;font-size:20px;color:var(--green)}
 .topbar-titles{display:flex;flex-direction:column}
 .topbar-titles h1{font-size:16px;font-weight:900;letter-spacing:0.2px;line-height:1.2}
 .topbar-company{font-size:10px;font-weight:700;opacity:0.88;letter-spacing:0.3px}
@@ -36,8 +35,7 @@ body{font-family:'Nunito',sans-serif;background:var(--gray);color:var(--text);mi
 .sidebar.open{left:0}
 .sidebar-header{background:var(--green);padding:26px 18px 18px;color:white}
 .sidebar-logo-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.sidebar-logo-circle{width:50px;height:50px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.2);flex-shrink:0}
-.sidebar-logo-circle img{width:38px;height:38px;object-fit:contain}
+.sidebar-logo-circle{width:50px;height:50px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.2);flex-shrink:0;color:var(--green);font-size:24px}
 .sidebar-header h2{font-size:19px;font-weight:900}
 .sidebar-company-name{font-size:12px;font-weight:700;opacity:.9;margin-top:2px}
 .sidebar-version{font-size:10px;opacity:.65;margin-top:2px}
@@ -46,215 +44,104 @@ body{font-family:'Nunito',sans-serif;background:var(--gray);color:var(--text);mi
 .sidebar-item:active,.sidebar-item.active{background:var(--green);color:white;border-radius:0 30px 30px 0;margin-right:14px}
 .sidebar-item span.icon{font-size:20px;min-width:26px}
 .sidebar-footer{display:flex;border-top:1px solid #eee;padding:12px 18px;gap:16px}
-.sidebar-footer button{flex:1;display:flex;align-items:center;gap:7px;background:none;border:none;font-family:inherit;font-size:13px;font-weight:700;color:var(--text2);cursor:pointer}
 
 /* MAIN */
 .main{padding:14px 13px 88px;position:relative;z-index:1}
-.section-title{font-size:12px;font-weight:900;color:var(--text2);text-transform:uppercase;letter-spacing:1.2px;margin:16px 0 9px 2px}
+.section-title{font-size:12px;font-weight:900;color:var(--text2);text-transform:uppercase;letter-spacing:1.2px;margin:16px 0 9px 2px;display:flex;align-items:center;gap:6px}
 
-/* DASHBOARD SUMMARY */
-.dashboard-summary{background:linear-gradient(135deg,#1565C0,#42A5F5);border-radius:var(--radius);color:white;padding:18px 16px 14px;margin-bottom:13px;box-shadow:0 4px 20px rgba(25,118,210,0.32)}
-.dash-label{font-size:10px;font-weight:800;opacity:.85;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:4px}
-.dash-big{font-size:30px;font-weight:900;margin-bottom:2px;letter-spacing:-0.5px}
-.dash-earn{font-size:17px;font-weight:800;margin-bottom:3px}
-.dash-sub{font-size:11px;opacity:.82}
-
-/* CARDS GRID */
-.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:13px}
-.stat-card{background:white;border-radius:var(--radius);padding:13px 11px 11px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:3px}
-.sc-icon{font-size:21px}
-.sc-label{font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
-.sc-val{font-size:24px;font-weight:900;color:var(--text)}
-.sc-sub{font-size:10px;color:var(--text2)}
-
-/* CHART */
-.chart-card{background:white;border-radius:var(--radius);padding:15px;box-shadow:var(--shadow);margin-bottom:13px}
-.chart-card h3{font-size:13px;font-weight:900;margin-bottom:12px;color:var(--text)}
-.bar-chart{display:flex;align-items:flex-end;gap:5px;height:90px}
-.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;justify-content:flex-end}
-.bar{width:100%;border-radius:5px 5px 0 0;transition:height .5s;min-height:4px}
-.bar.green{background:linear-gradient(180deg,#43A047,#81C784)}
-.bar.gray{background:var(--gray2)}
-.bar-label{font-size:9px;color:var(--text2);font-weight:800}
-.bar-val{font-size:9px;color:var(--green-dark);font-weight:900}
+/* KAZANÇ PREVIEW */
+.kazanc-preview{background:var(--green);border-radius:14px;padding:14px 16px;margin-bottom:14px;color:white;box-shadow:var(--shadow)}
+.kp-label{font-size:10px;font-weight:800;opacity:.85;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.kp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.kp-item{background:rgba(255,255,255,0.18);border-radius:10px;padding:7px 6px;text-align:center}
+.kp-item-val{font-size:15px;font-weight:900}
+.kp-item-label{font-size:9px;font-weight:700;opacity:.85}
+.kp-total{margin-top:8px;font-size:22px;font-weight:900;text-align:center;background:rgba(255,255,255,0.2);border-radius:10px;padding:12px}
+.kp-total-label{font-size:10px;opacity:.8;font-weight:700;display:block;margin-bottom:2px}
 
 /* FORM */
+.form-card{background:white;border-radius:var(--radius);padding:15px;box-shadow:var(--shadow);margin-bottom:13px}
 .form-group{margin-bottom:13px}
 .form-label{font-size:11px;font-weight:900;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px;display:flex;align-items:center;gap:5px}
 .form-input{width:100%;background:var(--gray);border:2px solid transparent;border-radius:13px;padding:12px 14px;font-size:15px;font-family:inherit;font-weight:700;color:var(--text);outline:none;transition:border-color .2s}
 .form-input:focus{border-color:var(--green);background:white}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.btn-green{width:100%;background:var(--green);color:white;border:none;border-radius:15px;padding:14px;font-size:15px;font-weight:900;font-family:inherit;cursor:pointer;margin-top:4px;letter-spacing:.3px}
-.btn-blue{width:100%;background:linear-gradient(135deg,#1565C0,#42A5F5);color:white;border:none;border-radius:15px;padding:14px;font-size:15px;font-weight:900;font-family:inherit;cursor:pointer;margin-top:4px}
+.btn-green{width:100%;background:var(--green);color:white;border:none;border-radius:15px;padding:14px;font-size:15px;font-weight:900;font-family:inherit;cursor:pointer;margin-top:4px;letter-spacing:.3px;box-shadow:0 4px 12px rgba(76,175,80,0.3)}
+.btn-blue{width:100%;background:var(--blue);color:white;border:none;border-radius:15px;padding:14px;font-size:15px;font-weight:900;font-family:inherit;cursor:pointer;margin-top:4px}
+.btn-outline-green{width:100%;background:white;border:2px dashed var(--green);border-radius:15px;padding:14px;font-size:14px;font-weight:900;color:var(--green);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
 
-/* KAZANÇ PREVIEW */
-.kazanc-preview{background:linear-gradient(135deg,var(--green-dark),var(--green));border-radius:14px;padding:14px 16px;margin-bottom:4px;color:white}
-.kp-label{font-size:10px;font-weight:800;opacity:.85;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.kp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.kp-item{background:rgba(255,255,255,0.18);border-radius:10px;padding:7px 6px;text-align:center}
-.kp-item-val{font-size:15px;font-weight:900}
-.kp-item-label{font-size:9px;font-weight:700;opacity:.85}
-.kp-total{margin-top:8px;font-size:20px;font-weight:900;text-align:center;background:rgba(255,255,255,0.2);border-radius:10px;padding:8px}
-.kp-total-label{font-size:10px;opacity:.8;font-weight:700}
-
-/* SAVED BANNER */
-.saved-entry-banner{background:var(--green-light);border-radius:13px;padding:11px 14px;margin-bottom:13px;display:flex;align-items:center;justify-content:space-between;border:1.5px solid #c8e6c9}
-.saved-entry-banner span{font-size:12px;font-weight:800;color:var(--green-dark)}
-.saved-entry-banner button{background:none;border:none;font-size:12px;color:var(--red);font-weight:900;cursor:pointer}
-
-/* PROGRESS CARD */
-.progress-card{background:white;border-radius:var(--radius);padding:15px;box-shadow:var(--shadow);margin-bottom:13px}
-.pc-title{font-size:15px;font-weight:900;margin-bottom:13px}
-
-/* GEÇMİŞ */
-.gecmis-item{background:white;border-radius:var(--radius);padding:13px 15px;box-shadow:var(--shadow);margin-bottom:11px}
-.gecmis-item-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
-.gecmis-date{font-size:15px;font-weight:900;display:flex;align-items:center;gap:7px}
-.gecmis-actions{display:flex;gap:8px}
-.gecmis-actions button{background:none;border:none;font-size:19px;cursor:pointer}
-.gecmis-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:5px}
-.gecmis-stat{background:var(--gray);border-radius:9px;padding:7px 5px;text-align:center}
-.gs-label{font-size:9px;font-weight:800;color:var(--text2);text-transform:uppercase}
-.gs-val{font-size:16px;font-weight:900;color:var(--text)}
-.gs-kazanc{background:linear-gradient(135deg,var(--green-dark),var(--green));color:white;border-radius:11px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;margin-top:7px;font-weight:900;font-size:13px}
-
-/* WA SHARE BTN */
-.wa-btn{width:100%;margin-top:8px;background:#25D366;color:white;border:none;border-radius:12px;padding:10px;font-size:13px;font-weight:900;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;letter-spacing:.3px}
-
-/* GELİR GİDER */
-.gelir-summary{background:linear-gradient(135deg,#2E7D32,#66BB6A);border-radius:var(--radius);color:white;padding:16px;margin-bottom:13px;box-shadow:0 4px 20px rgba(46,125,50,.3)}
-.gelir-summary .gs2-label{font-size:10px;opacity:.85;font-weight:800;text-transform:uppercase;letter-spacing:1px}
-.gelir-summary .gs2-big{font-size:26px;font-weight:900;margin:3px 0}
-.gelir-row{display:flex;gap:0;margin-top:9px}
-.gelir-col{flex:1;text-align:center;padding:8px 0}
-.gelir-col:first-child{border-right:1px solid rgba(255,255,255,.3)}
-.gelir-col .gc-val{font-size:15px;font-weight:900}
+/* GELİR GİDER SUMMARY */
+.gelir-summary{background:var(--green);border-radius:var(--radius);color:white;padding:18px 16px;margin-bottom:20px;box-shadow:0 4px 20px rgba(76,175,80,.3)}
+.gelir-summary .gs2-label{font-size:11px;opacity:.9;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.gelir-summary .gs2-big{font-size:32px;font-weight:900;margin:3px 0}
+.gelir-row{display:flex;gap:0;margin-top:12px;border-top:1px solid rgba(255,255,255,.2);padding-top:12px}
+.gelir-col{flex:1;display:flex;flex-direction:column;gap:2px}
+.gelir-col:first-child{border-right:1px solid rgba(255,255,255,.3);padding-right:12px}
+.gelir-col:last-child{padding-left:12px}
+.gelir-col .gc-val{font-size:16px;font-weight:900;display:flex;align-items:center;gap:6px}
 .gelir-col .gc-label{font-size:10px;opacity:.8;font-weight:700}
-.gider-item{background:white;border-radius:13px;padding:11px 13px;box-shadow:var(--shadow);margin-bottom:7px;display:flex;align-items:center;justify-content:space-between}
-.gi-left{display:flex;align-items:center;gap:9px}
-.gi-icon{font-size:20px}
-.gi-name{font-size:13px;font-weight:800}
-.gi-date{font-size:10px;color:var(--text2)}
-.gi-amount{font-size:15px;font-weight:900;color:var(--red)}
-.gi-del{background:none;border:none;font-size:17px;cursor:pointer;color:var(--text2)}
-.btn-add-gider{width:100%;background:white;border:2px dashed var(--green);border-radius:13px;padding:12px;font-size:13px;font-weight:900;font-family:inherit;color:var(--green);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px}
-
-/* AYLIK RAPOR */
-.rapor-ay-header{background:linear-gradient(135deg,#4527A0,#7C4DFF);border-radius:var(--radius);color:white;padding:18px 16px;margin-bottom:13px;box-shadow:0 4px 18px rgba(69,39,160,.35)}
-.rapor-ay-title{font-size:11px;font-weight:800;opacity:.8;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.rapor-ay-name{font-size:22px;font-weight:900;margin-bottom:12px}
-.rapor-ay-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.rapor-ay-item{background:rgba(255,255,255,.18);border-radius:12px;padding:10px 12px}
-.rapor-ai-label{font-size:10px;font-weight:700;opacity:.8;margin-bottom:2px}
-.rapor-ai-val{font-size:18px;font-weight:900}
-
-.rapor-section{background:white;border-radius:var(--radius);padding:15px;box-shadow:var(--shadow);margin-bottom:13px}
-.rapor-section-title{font-size:12px;font-weight:900;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
-
-/* DONUT CHART */
-.donut-wrap{display:flex;align-items:center;gap:16px}
-.donut-svg{flex-shrink:0}
-.donut-legend{flex:1}
-.legend-item{display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:12px;font-weight:700}
-.legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
-.legend-val{font-size:13px;font-weight:900;color:var(--text)}
-.legend-pct{font-size:10px;color:var(--text2)}
-
-/* HAFTALAR TABLOSU */
-.hafta-tablo{width:100%;border-collapse:collapse;font-size:12px}
-.hafta-tablo th{text-align:left;font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;padding:4px 6px;border-bottom:1px solid var(--gray2)}
-.hafta-tablo td{padding:7px 6px;border-bottom:1px solid var(--gray2);font-weight:700}
-.hafta-tablo tr:last-child td{border-bottom:none}
-.hafta-tablo .val-green{color:var(--green-dark);font-weight:900}
-.hafta-tablo .val-blue{color:var(--blue);font-weight:900}
-
-/* EN İYİ / EN KÖTÜ */
-.ek-row{display:flex;gap:9px;margin-bottom:13px}
-.ek-card{flex:1;border-radius:14px;padding:13px;display:flex;flex-direction:column;gap:4px}
-.ek-card.best{background:linear-gradient(135deg,#E8F5E9,#C8E6C9);border:1.5px solid #A5D6A7}
-.ek-card.worst{background:linear-gradient(135deg,#FFF8E1,#FFECB3);border:1.5px solid #FFE082}
-.ek-card .ek-icon{font-size:20px}
-.ek-card .ek-label{font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
-.ek-card .ek-date{font-size:12px;font-weight:900;color:var(--text)}
-.ek-card .ek-val{font-size:15px;font-weight:900}
-
-/* WA AY PAYLAS */
-.wa-ay-btn{width:100%;background:linear-gradient(135deg,#128C7E,#25D366);color:white;border:none;border-radius:15px;padding:15px;font-size:15px;font-weight:900;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.4px;box-shadow:0 4px 14px rgba(37,211,102,.35)}
 
 /* AY SEÇİCİ */
-.ay-secici{display:flex;align-items:center;justify-content:space-between;background:white;border-radius:13px;padding:10px 14px;box-shadow:var(--shadow);margin-bottom:13px}
-.ay-secici button{background:var(--gray2);border:none;border-radius:8px;padding:6px 12px;font-size:16px;cursor:pointer;font-weight:900}
-.ay-secici .ay-text{font-size:14px;font-weight:900;color:var(--text)}
-
-/* AYARLAR */
-.settings-section{background:white;border-radius:var(--radius);padding:15px;box-shadow:var(--shadow);margin-bottom:13px}
-.settings-section h3{font-size:12px;font-weight:900;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:13px;display:flex;align-items:center;gap:5px}
-.settings-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid #f5f5f5}
-.settings-row:last-child{border-bottom:none}
-.sr-left{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700}
-.sr-icon{font-size:19px}
-.sr-right{font-size:12px;font-weight:800;cursor:pointer;color:var(--green)}
-.profile-row{display:flex;align-items:center;gap:13px;padding:13px;background:white;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:13px}
-.profile-avatar{width:54px;height:54px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
-.profile-info h3{font-size:15px;font-weight:900}
-.profile-info p{font-size:12px;color:var(--text2);font-weight:600}
-.kdv-result{background:var(--green-light);border-radius:11px;padding:11px;margin-top:9px;font-size:13px;font-weight:700;color:var(--green-dark)}
+.ay-secici{display:flex;align-items:center;justify-content:space-between;background:white;border-radius:15px;padding:12px 16px;box-shadow:var(--shadow);margin-bottom:20px}
+.ay-secici button{background:var(--gray);border:none;border-radius:8px;padding:8px 14px;font-size:16px;cursor:pointer;font-weight:900;color:var(--text)}
+.ay-secici .ay-text{font-size:15px;font-weight:900;color:var(--text)}
 
 /* ŞİRKET SEÇİM */
-.sirket-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.sirket-card{border:2.5px solid var(--gray2);border-radius:15px;padding:13px 9px;cursor:pointer;text-align:center;transition:all .2s;background:white;position:relative}
-.sirket-card.selected{border-color:var(--green);background:var(--green-light);box-shadow:0 0 0 3px rgba(76,175,80,.18)}
-.check-badge{position:absolute;top:7px;right:7px;background:var(--green);color:white;border-radius:50%;width:19px;height:19px;font-size:11px;display:none;align-items:center;justify-content:center}
+.sirket-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sirket-card{border:2.5px solid var(--gray2);border-radius:15px;padding:16px 10px;cursor:pointer;text-align:center;transition:all .2s;background:white;position:relative}
+.sirket-card.selected{border-color:var(--green);background:var(--green-light);}
+.check-badge{position:absolute;top:8px;right:8px;background:var(--green);color:white;border-radius:50%;width:22px;height:22px;font-size:12px;display:none;align-items:center;justify-content:center;font-weight:bold}
 .sirket-card.selected .check-badge{display:flex}
-.sirket-logo-box{width:52px;height:52px;border-radius:13px;margin:0 auto 7px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:white;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-.sirket-logo-box img{width:44px;height:44px;object-fit:contain}
-.emoji-logo{font-size:28px}
-.sirket-name{font-size:11px;font-weight:900;color:var(--text)}
-.sirket-type{font-size:9px;color:var(--text2);margin-top:2px;font-weight:700}
+.sirket-logo-box{font-size:36px;margin-bottom:8px}
+.sirket-name{font-size:13px;font-weight:900;color:var(--text)}
+.sirket-type{font-size:10px;color:var(--text2);margin-top:4px;font-weight:700}
 
-/* MODAL */
+/* AYARLAR KARTLARI */
+.settings-section{background:white;border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:15px}
+.profile-row{display:flex;align-items:center;gap:15px;padding:15px;background:white;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:15px}
+.profile-avatar{width:60px;height:60px;border-radius:50%;background:var(--gray);display:flex;align-items:center;justify-content:center;font-size:30px;flex-shrink:0}
+.profile-info h3{font-size:16px;font-weight:900}
+.profile-info p{font-size:13px;color:var(--text2);font-weight:700}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #f5f5f5}
+.settings-row:last-child{border-bottom:none}
+
+/* MODAL & BOTTOM NAV */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
 .modal-overlay.open{opacity:1;pointer-events:all}
-.modal{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);width:100%;max-width:480px;background:white;border-radius:22px 22px 0 0;z-index:301;transition:transform .35s cubic-bezier(.4,0,.2,1);max-height:92vh;overflow-y:auto;padding-bottom:28px}
+.modal{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);width:100%;max-width:480px;background:white;border-radius:22px 22px 0 0;z-index:301;transition:transform .35s cubic-bezier(.4,0,.2,1);padding-bottom:28px}
 .modal.open{transform:translateX(-50%) translateY(0)}
 .modal-handle{width:38px;height:4px;background:#ddd;border-radius:99px;margin:11px auto 0}
-.modal-header{display:flex;align-items:center;justify-content:space-between;padding:13px 16px 9px;border-bottom:1px solid #f0f0f0}
-.modal-header h2{font-size:17px;font-weight:900}
-.modal-close{background:var(--gray2);border:none;border-radius:50%;width:31px;height:31px;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.modal-body{padding:14px 16px}
-.kategori-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:13px}
-.kategori-btn{background:var(--gray);border:2px solid transparent;border-radius:11px;padding:11px 7px;font-size:13px;font-weight:800;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:7px;transition:all .15s}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #f0f0f0}
+.modal-header h2{font-size:17px;font-weight:900;display:flex;align-items:center;gap:6px}
+.modal-close{background:var(--gray);border:none;border-radius:50%;width:31px;height:31px;font-size:16px;cursor:pointer;}
+.modal-body{padding:16px}
+.kategori-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:15px}
+.kategori-btn{background:var(--gray);border:2px solid transparent;border-radius:13px;padding:12px;font-size:14px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .15s}
 .kategori-btn.selected{border-color:var(--green);background:var(--green-light);color:var(--green-dark)}
-.ki{font-size:19px}
 
-/* BOTTOM NAV */
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:white;border-top:1px solid #eee;display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom)}
-.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:9px 0 7px;cursor:pointer;gap:2px;transition:color .15s}
-.nav-icon{font-size:20px}
-.nav-label{font-size:9px;font-weight:800;color:var(--text2)}
-.nav-item.active .nav-label{color:var(--green)}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:white;border-top:1px solid #eee;display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -2px 10px rgba(0,0,0,0.05)}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px 0;cursor:pointer;gap:3px;transition:color .15s;color:var(--text2)}
+.nav-icon{font-size:22px}
+.nav-label{font-size:10px;font-weight:800}
+.nav-item.active{color:var(--green)}
 
-/* TOAST */
-.toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(16px);background:#222;color:white;padding:11px 22px;border-radius:99px;font-size:13px;font-weight:800;z-index:999;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-.empty-state{text-align:center;padding:36px 18px;color:var(--text2)}
-.empty-state .emoji{font-size:44px;margin-bottom:10px}
-.empty-state p{font-size:13px;font-weight:700}
-.tab-content{display:none}
+.empty-state{text-align:center;padding:50px 20px;color:var(--text2)}
+.empty-state .emoji{font-size:50px;margin-bottom:12px;display:block}
+.empty-state p{font-size:14px;font-weight:700}
+.tab-content{display:none;animation:fadeIn 0.3s ease}
 .tab-content.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
 <div class="topbar">
   <div class="topbar-left">
     <button class="hamburger-btn" onclick="toggleSidebar()">☰</button>
-    <div class="topbar-logo" id="topbarLogoBox"></div>
+    <div class="topbar-logo">✔️</div>
     <div class="topbar-titles">
       <h1>kolay gelsin</h1>
-      <div class="topbar-company" id="topbarCompanyName">Şirket seçilmedi</div>
+      <div class="topbar-company" id="topCompany">Şirket seçilmedi</div>
     </div>
   </div>
   <div class="topbar-icons">
@@ -263,22 +150,228 @@ body{font-family:'Nunito',sans-serif;background:var(--gray);color:var(--text);mi
   </div>
 </div>
 
-<!-- SIDEBAR -->
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 <div class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <div class="sidebar-logo-row">
-      <div class="sidebar-logo-circle" id="sidebarLogoBox"></div>
+      <div class="sidebar-logo-circle">✔️</div>
       <div>
         <h2>kolay gelsin</h2>
-        <div class="sidebar-company-name" id="sidebarCompanyName">—</div>
+        <div class="sidebar-company-name">Şirket seçilmedi</div>
         <div class="sidebar-version">Kurye Takip v2.0</div>
       </div>
     </div>
   </div>
   <div class="sidebar-menu">
-    <div class="sidebar-item active" onclick="switchTab('anasayfa');toggleSidebar()"><span class="icon">🏠</span>Ana Sayfa</div>
-    <div class="sidebar-item" onclick="switchTab('teslimat');toggleSidebar()"><span class="icon">🚀</span>Teslimat Girişi</div>
-    <div class="sidebar-item" onclick="switchTab('gecmis');toggleSidebar()"><span class="icon">📋</span>Geçmiş</div>
-    <div class="sidebar-item" onclick="switchTab('ozet');toggleSidebar()"><span class="icon">📊</span>Aylık Özet</div>
-    <div 
+    <div class="sidebar-item active" onclick="switchTab('anasayfa')"><span class="icon">🏠</span>Ana Sayfa</div>
+    <div class="sidebar-item" onclick="switchTab('giris')"><span class="icon">🚀</span>Teslimat Girişi</div>
+    <div class="sidebar-item" onclick="switchTab('gecmis')"><span class="icon">📋</span>Geçmiş</div>
+    <div class="sidebar-item" onclick="switchTab('ozet')"><span class="icon">📊</span>Aylık Özet</div>
+    <div class="sidebar-item" onclick="switchTab('gelirgider')"><span class="icon">💰</span>Gelir/Gider</div>
+    <div class="sidebar-item" onclick="switchTab('ayarlar')"><span class="icon">⚙️</span>Ayarlar</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div id="anasayfa" class="tab-content active">
+    <div class="empty-state">
+      <span class="emoji">🏠</span>
+      <p>Ana Sayfa paneline hoş geldiniz.<br>Alt menüden giriş işlemlerinize başlayabilirsiniz.</p>
+    </div>
+  </div>
+
+  <div id="giris" class="tab-content">
+    <div class="form-card">
+      <div class="section-title">📝 Bugünkü teslimatını gir</div>
+      
+      <div class="form-group">
+        <label class="form-label">📅 TARİH</label>
+        <input type="date" class="form-input" id="inpTarih" value="2026-05-03">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">✅ GÖREV (BRÜT)</label>
+          <input type="number" class="form-input calc-inp" id="inpGorev" value="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">❌ DEVİR</label>
+          <input type="number" class="form-input calc-inp" id="inpDevir" value="0">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">📦 PARÇA</label>
+          <input type="number" class="form-input calc-inp" id="inpParca" value="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">🔄 TOPLAMA</label>
+          <input type="number" class="form-input calc-inp" id="inpToplama" value="0">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">🛣️ KM</label>
+        <input type="number" class="form-input calc-inp" id="inpKm" value="0">
+      </div>
+
+      <div class="kazanc-preview">
+        <div class="kp-label">🧮 OTOMATİK KAZANÇ HESABI</div>
+        <div class="kp-grid">
+          <div class="kp-item">
+            <div class="kp-item-val" id="prevGorev">0 ₺</div>
+            <div class="kp-item-label">Görev</div>
+          </div>
+          <div class="kp-item">
+            <div class="kp-item-val" id="prevParca">0 ₺</div>
+            <div class="kp-item-label">Parça</div>
+          </div>
+          <div class="kp-item">
+            <div class="kp-item-val" id="prevToplama">0 ₺</div>
+            <div class="kp-item-label">Toplama</div>
+          </div>
+        </div>
+        <div class="kp-total">
+          <span class="kp-total-label">TOPLAM KAZANÇ</span>
+          <span id="prevToplam">0,00 ₺</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">📝 NOT (İSTEĞE BAĞLI)</label>
+        <input type="text" class="form-input" placeholder="Örn: Sorunsuz geçti...">
+      </div>
+
+      <button class="btn-green">💾 Kaydet</button>
+    </div>
+  </div>
+
+  <div id="gecmis" class="tab-content">
+    <div class="section-title">📋 TESLİMAT GEÇMİŞİ</div>
+    <div class="empty-state">
+      <span class="emoji">📫</span>
+      <p>Henüz teslimat kaydı yok</p>
+    </div>
+  </div>
+
+  <div id="ozet" class="tab-content">
+    <div class="section-title">📊 AYLIK ÖZET RAPORU</div>
+    
+    <div class="ay-secici">
+      <button>❮</button>
+      <div class="ay-text">Mayıs 2026</div>
+      <button>❯</button>
+    </div>
+
+    <div class="empty-state" style="padding-top:10px; padding-bottom:30px;">
+      <span class="emoji">📊</span>
+      <p>Bu ay için kayıt yok</p>
+    </div>
+
+    <button class="btn-green" style="background:#25D366; display:flex; align-items:center; justify-content:center; gap:8px;">
+      📲 Bu Ayı WhatsApp ile Paylaş
+    </button>
+  </div>
+
+  <div id="gelirgider" class="tab-content">
+    <div class="section-title">💰 GELİR & GİDER TAKİBİ</div>
+    
+    <div class="gelir-summary">
+      <div class="gs2-label">NET BAKİYE</div>
+      <div class="gs2-big">0,00 ₺</div>
+      <div class="gelir-row">
+        <div class="gelir-col">
+          <div class="gc-val">📈 0,00 ₺</div>
+          <div class="gc-label">Toplam Gelir</div>
+        </div>
+        <div class="gelir-col">
+          <div class="gc-val" style="color:#FFCDD2;">📉 0,00 ₺</div>
+          <div class="gc-label">Toplam Gider</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" style="padding-top:10px; padding-bottom:20px;">
+      <span class="emoji">💸</span>
+      <p>Gider kaydı yok</p>
+    </div>
+
+    <button class="btn-outline-green" onclick="toggleGiderModal()">➕ Gider Ekle</button>
+  </div>
+
+  <div id="ayarlar" class="tab-content">
+    <div class="section-title">⚙️ AYARLAR</div>
+
+    <div class="profile-row">
+      <div class="profile-avatar">🚴</div>
+      <div class="profile-info">
+        <h3>Kurye Adı</h3>
+        <p>Şirket seçilmedi</p>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="form-label">👤 KURYE BİLGİLERİ</div>
+      <div class="form-group" style="margin-top:10px;">
+        <label style="font-size:10px;font-weight:700;color:var(--text2);margin-bottom:4px;display:block;">AD SOYAD</label>
+        <input type="text" class="form-input" placeholder="Adınızı girin">
+      </div>
+      <div class="form-group">
+        <label style="font-size:10px;font-weight:700;color:var(--text2);margin-bottom:4px;display:block;">TELEFON</label>
+        <input type="tel" class="form-input" placeholder="0555 000 00 00">
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="form-label">🏢 ŞİRKET DEĞİŞTİR</div>
+      <p style="font-size:12px;color:var(--text2);margin-bottom:15px;font-weight:600;">Çalıştığınız kargo firmasını seçin. Logosu ana ekranda görünür.</p>
+      
+      <div class="sirket-grid">
+        <div class="sirket-card selected" onclick="selectCompany(this, 'Aras Kargo')">
+          <div class="check-badge">✓</div>
+          <div class="sirket-logo-box">📦</div>
+          <div class="sirket-name">Aras Kargo</div>
+          <div class="sirket-type">Kargo</div>
+        </div>
+        <div class="sirket-card" onclick="selectCompany(this, 'Yurtiçi Kargo')">
+          <div class="check-badge">✓</div>
+          <div class="sirket-logo-box">🟠</div>
+          <div class="sirket-name">Yurtiçi Kargo</div>
+          <div class="sirket-type">Kargo</div>
+        </div>
+        <div class="sirket-card" onclick="selectCompany(this, 'Trendyol Express')">
+          <div class="check-badge">✓</div>
+          <div class="sirket-logo-box">🛍️</div>
+          <div class="sirket-name">Trendyol Express</div>
+          <div class="sirket-type">E-ticaret</div>
+        </div>
+        <div class="sirket-card" onclick="selectCompany(this, 'Getir')">
+          <div class="check-badge">✓</div>
+          <div class="sirket-logo-box">⚡</div>
+          <div class="sirket-name">Getir</div>
+          <div class="sirket-type">Hızlı Teslimat</div>
+        </div>
+        <div class="sirket-card" onclick="selectCompany(this, 'HepsiJet')">
+          <div class="check-badge">✓</div>
+          <div class="sirket-logo-box">✈️</div>
+          <div class="sirket-name">HepsiJet</div>
+          <div class="sirket-type">E-ticaret</div>
+        </div>
+        <div class="sirket-card" onclick="selectCompany(this, 'Sürat Kargo')">
+          <div class="check-badge">✓</div>
+          <div class="sirket-logo-box">💨</div>
+          <div class="sirket-name">Sürat Kargo</div>
+          <div class="sirket-type">Kargo</div>
+        </div>
+      </div>
+      <button class="btn-green" style="margin-top:15px;">✅ Şirketi Kaydet</button>
+    </div>
+
+    <div class="settings-section">
+      <div class="form-label" style="color:var(--green);">💰 ÜCRET TARİFESİ <span style="font-size:9px;color:var(--text2);">(KAZANÇ OTOMATİK HESAPLANIR)</span></div>
+      <div class="form-row" style="margin-top:15px;">
+        <div class="form-group">
+          <label style="font-size:10px;font-weight:700;color:var(--text2);margin-bottom:4px;display:block;">GÖREV BAŞI (₺)</label>
+          <input ty
