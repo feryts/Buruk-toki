@@ -1,278 +1,284 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BURUK TOKİ v41</title>
-    <style>
-        :root { --ana: #1e293b; --arka: #f8fafc; --yazi: #334155; --mavi: #3b82f6; --kirmizi: #ef4444; --yesil: #22c55e; }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-        body { font-family: 'Segoe UI', Roboto, sans-serif; margin: 0; background: var(--arka); color: var(--yazi); overflow: hidden; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Kolay Gelsin Takip</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green:#4CAF50; --green-dark:#388E3C; --green-light:#E8F5E9;
+  --blue:#1976D2; --blue-light:#E3F2FD;
+  --red:#E53935; --orange:#F57C00; --purple:#7B1FA2;
+  --gray:#F5F6FA; --gray2:#ECEFF1;
+  --text:#212121; --text2:#757575; --white:#fff;
+  --shadow:0 2px 16px rgba(0,0,0,0.10); --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Nunito',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;max-width:480px;margin:0 auto;overflow-x:hidden}
 
-        /* Menü */
-        .tabs { display: flex; background: var(--ana); height: 60px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        .tab { flex: 1; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 11px; color: #94a3b8; text-transform: uppercase; border-bottom: 3px solid transparent; }
-        .tab.active { color: white; border-bottom-color: var(--mavi); background: rgba(255,255,255,0.05); }
+/* TOPBAR */
+.topbar{background:var(--green);color:white;display:flex;align-items:center;justify-content:space-between;padding:13px 16px 11px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(76,175,80,0.35)}
+.topbar-left{display:flex;align-items:center;gap:9px}
+.hamburger-btn{background:none;border:none;color:white;font-size:26px;cursor:pointer;line-height:1;padding:0}
+.topbar-logo{width:38px;height:38px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.2);flex-shrink:0}
+.topbar-logo img{width:30px;height:30px;object-fit:contain}
+.topbar-titles{display:flex;flex-direction:column}
+.topbar-titles h1{font-size:16px;font-weight:900;letter-spacing:0.2px;line-height:1.2}
+.topbar-company{font-size:10px;font-weight:700;opacity:0.88;letter-spacing:0.3px}
+.topbar-icons{display:flex;gap:12px}
+.topbar-icons span{font-size:21px;cursor:pointer}
 
-        .page { padding: 15px; height: calc(100vh - 60px); overflow-y: auto; display: none; }
-        .page.active { display: block; }
+/* SIDEBAR */
+.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.42);z-index:200;opacity:0;pointer-events:none;transition:opacity .3s}
+.sidebar-overlay.open{opacity:1;pointer-events:all}
+.sidebar{position:fixed;top:0;left:-300px;width:278px;height:100vh;background:white;z-index:201;transition:left .3s cubic-bezier(.4,0,.2,1);box-shadow:4px 0 28px rgba(0,0,0,0.18);display:flex;flex-direction:column}
+.sidebar.open{left:0}
+.sidebar-header{background:var(--green);padding:26px 18px 18px;color:white}
+.sidebar-logo-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.sidebar-logo-circle{width:50px;height:50px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.2);flex-shrink:0}
+.sidebar-logo-circle img{width:38px;height:38px;object-fit:contain}
+.sidebar-header h2{font-size:19px;font-weight:900}
+.sidebar-company-name{font-size:12px;font-weight:700;opacity:.9;margin-top:2px}
+.sidebar-version{font-size:10px;opacity:.65;margin-top:2px}
+.sidebar-menu{flex:1;overflow-y:auto;padding:10px 0}
+.sidebar-item{display:flex;align-items:center;gap:13px;padding:13px 20px;cursor:pointer;font-size:14px;font-weight:800;color:var(--text);transition:background .15s}
+.sidebar-item:active,.sidebar-item.active{background:var(--green);color:white;border-radius:0 30px 30px 0;margin-right:14px}
+.sidebar-item span.icon{font-size:20px;min-width:26px}
+.sidebar-footer{display:flex;border-top:1px solid #eee;padding:12px 18px;gap:16px}
+.sidebar-footer button{flex:1;display:flex;align-items:center;gap:7px;background:none;border:none;font-family:inherit;font-size:13px;font-weight:700;color:var(--text2);cursor:pointer}
 
-        /* Kartlar */
-        .card { background: white; padding: 20px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
-        h3 { margin: 0 0 10px 0; font-size: 13px; color: var(--ana); text-transform: uppercase; border-bottom: 2px solid #f1f5f9; padding-bottom: 5px; }
-        
-        textarea, input, select { 
-            width: 100%; padding: 14px; margin: 5px 0; border-radius: 8px; border: 1px solid #cbd5e1; 
-            background: white; color: var(--yazi); font-size: 16px; font-weight: 600;
-        }
-        button { 
-            width: 100%; padding: 16px; border-radius: 10px; border: none; font-weight: bold; 
-            font-size: 14px; cursor: pointer; background: var(--mavi); color: white; margin-top: 5px;
-        }
+/* MAIN */
+.main{padding:14px 13px 88px;position:relative;z-index:1}
+.section-title{font-size:12px;font-weight:900;color:var(--text2);text-transform:uppercase;letter-spacing:1.2px;margin:16px 0 9px 2px}
 
-        /* 1-10 Güzergah Paneli */
-        .sira-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 10px 0; }
-        .sira-btn { padding: 12px; background: #f1f5f9; border-radius: 8px; text-align: center; font-weight: bold; color: var(--yazi); border: 2px solid transparent; }
-        .sira-btn.active { background: var(--mavi); color: white; border-color: var(--ana); }
+/* DASHBOARD SUMMARY */
+.dashboard-summary{background:linear-gradient(135deg,#1565C0,#42A5F5);border-radius:var(--radius);color:white;padding:18px 16px 14px;margin-bottom:13px;box-shadow:0 4px 20px rgba(25,118,210,0.32)}
+.dash-label{font-size:10px;font-weight:800;opacity:.85;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:4px}
+.dash-big{font-size:30px;font-weight:900;margin-bottom:2px;letter-spacing:-0.5px}
+.dash-earn{font-size:17px;font-weight:800;margin-bottom:3px}
+.dash-sub{font-size:11px;opacity:.82}
 
-        /* Liste */
-        .etap-baslik { background: #f1f5f9; padding: 10px 15px; border-radius: 8px; font-size: 13px; font-weight: 800; color: var(--ana); margin: 15px 0 5px 0; display: flex; justify-content: space-between; border-left: 5px solid var(--mavi); }
-        .liste-oge { 
-            background: white; padding: 15px; border-radius: 10px; margin-bottom: 5px; 
-            display: flex; justify-content: space-between; align-items: center; border: 1px solid #e2e8f0;
-        }
-        .liste-oge.done { opacity: 0.4; background: #f8fafc; text-decoration: line-through; }
+/* CARDS GRID */
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:13px}
+.stat-card{background:white;border-radius:var(--radius);padding:13px 11px 11px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:3px}
+.sc-icon{font-size:21px}
+.sc-label{font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+.sc-val{font-size:24px;font-weight:900;color:var(--text)}
+.sc-sub{font-size:10px;color:var(--text2)}
 
-        /* Harita */
-        .h-bar { position: fixed; top: 60px; left: 0; right: 0; z-index: 1000; background: #fff; padding: 10px; border-bottom: 1px solid #e2e8f0; display: flex; gap: 10px; }
-        .viewport { position: relative; width: 100%; height: 100%; overflow: auto; background: #f1f5f9; margin-top: 50px; }
-        .canvas { position: relative; display: inline-block; transform-origin: 0 0; }
-        #mapImg { display: block; width: 1500px; height: auto; }
+/* CHART */
+.chart-card{background:white;border-radius:var(--radius);padding:15px;box-shadow:var(--shadow);margin-bottom:13px}
+.chart-card h3{font-size:13px;font-weight:900;margin-bottom:12px;color:var(--text)}
+.bar-chart{display:flex;align-items:flex-end;gap:5px;height:90px}
+.bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;height:100%;justify-content:flex-end}
+.bar{width:100%;border-radius:5px 5px 0 0;transition:height .5s;min-height:4px}
+.bar.green{background:linear-gradient(180deg,#43A047,#81C784)}
+.bar.gray{background:var(--gray2)}
+.bar-label{font-size:9px;color:var(--text2);font-weight:800}
+.bar-val{font-size:9px;color:var(--green-dark);font-weight:900}
 
-        .pin { 
-            position: absolute; width: 32px; height: 32px; background: var(--kirmizi); 
-            border: 3px solid white; border-radius: 50%; transform: translate(-50%, -50%); 
-            z-index: 500; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        .pin.done { background: var(--yesil); opacity: 0.5; }
+/* FORM */
+.form-group{margin-bottom:13px}
+.form-label{font-size:11px;font-weight:900;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.form-input{width:100%;background:var(--gray);border:2px solid transparent;border-radius:13px;padding:12px 14px;font-size:15px;font-family:inherit;font-weight:700;color:var(--text);outline:none;transition:border-color .2s}
+.form-input:focus{border-color:var(--green);background:white}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.btn-green{width:100%;background:var(--green);color:white;border:none;border-radius:15px;padding:14px;font-size:15px;font-weight:900;font-family:inherit;cursor:pointer;margin-top:4px;letter-spacing:.3px}
+.btn-blue{width:100%;background:linear-gradient(135deg,#1565C0,#42A5F5);color:white;border:none;border-radius:15px;padding:14px;font-size:15px;font-weight:900;font-family:inherit;cursor:pointer;margin-top:4px}
 
-        .fab { position: fixed; right: 20px; bottom: 30px; display: flex; flex-direction: column; gap: 12px; z-index: 2000; }
-        .btn-circle { width: 60px; height: 60px; border-radius: 50%; background: white; color: var(--ana); border: 2px solid var(--ana); font-size: 28px; font-weight: bold; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+/* KAZANÇ PREVIEW */
+.kazanc-preview{background:linear-gradient(135deg,var(--green-dark),var(--green));border-radius:14px;padding:14px 16px;margin-bottom:4px;color:white}
+.kp-label{font-size:10px;font-weight:800;opacity:.85;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.kp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.kp-item{background:rgba(255,255,255,0.18);border-radius:10px;padding:7px 6px;text-align:center}
+.kp-item-val{font-size:15px;font-weight:900}
+.kp-item-label{font-size:9px;font-weight:700;opacity:.85}
+.kp-total{margin-top:8px;font-size:20px;font-weight:900;text-align:center;background:rgba(255,255,255,0.2);border-radius:10px;padding:8px}
+.kp-total-label{font-size:10px;opacity:.8;font-weight:700}
 
-        #pop { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: 15px; padding: 25px; z-index: 3000; display: none; width: 85%; text-align: center; box-shadow: 0 0 50px rgba(0,0,0,0.2); }
-    </style>
+/* SAVED BANNER */
+.saved-entry-banner{background:var(--green-light);border-radius:13px;padding:11px 14px;margin-bottom:13px;display:flex;align-items:center;justify-content:space-between;border:1.5px solid #c8e6c9}
+.saved-entry-banner span{font-size:12px;font-weight:800;color:var(--green-dark)}
+.saved-entry-banner button{background:none;border:none;font-size:12px;color:var(--red);font-weight:900;cursor:pointer}
+
+/* PROGRESS CARD */
+.progress-card{background:white;border-radius:var(--radius);padding:15px;box-shadow:var(--shadow);margin-bottom:13px}
+.pc-title{font-size:15px;font-weight:900;margin-bottom:13px}
+
+/* GEÇMİŞ */
+.gecmis-item{background:white;border-radius:var(--radius);padding:13px 15px;box-shadow:var(--shadow);margin-bottom:11px}
+.gecmis-item-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
+.gecmis-date{font-size:15px;font-weight:900;display:flex;align-items:center;gap:7px}
+.gecmis-actions{display:flex;gap:8px}
+.gecmis-actions button{background:none;border:none;font-size:19px;cursor:pointer}
+.gecmis-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:5px}
+.gecmis-stat{background:var(--gray);border-radius:9px;padding:7px 5px;text-align:center}
+.gs-label{font-size:9px;font-weight:800;color:var(--text2);text-transform:uppercase}
+.gs-val{font-size:16px;font-weight:900;color:var(--text)}
+.gs-kazanc{background:linear-gradient(135deg,var(--green-dark),var(--green));color:white;border-radius:11px;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;margin-top:7px;font-weight:900;font-size:13px}
+
+/* WA SHARE BTN */
+.wa-btn{width:100%;margin-top:8px;background:#25D366;color:white;border:none;border-radius:12px;padding:10px;font-size:13px;font-weight:900;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;letter-spacing:.3px}
+
+/* GELİR GİDER */
+.gelir-summary{background:linear-gradient(135deg,#2E7D32,#66BB6A);border-radius:var(--radius);color:white;padding:16px;margin-bottom:13px;box-shadow:0 4px 20px rgba(46,125,50,.3)}
+.gelir-summary .gs2-label{font-size:10px;opacity:.85;font-weight:800;text-transform:uppercase;letter-spacing:1px}
+.gelir-summary .gs2-big{font-size:26px;font-weight:900;margin:3px 0}
+.gelir-row{display:flex;gap:0;margin-top:9px}
+.gelir-col{flex:1;text-align:center;padding:8px 0}
+.gelir-col:first-child{border-right:1px solid rgba(255,255,255,.3)}
+.gelir-col .gc-val{font-size:15px;font-weight:900}
+.gelir-col .gc-label{font-size:10px;opacity:.8;font-weight:700}
+.gider-item{background:white;border-radius:13px;padding:11px 13px;box-shadow:var(--shadow);margin-bottom:7px;display:flex;align-items:center;justify-content:space-between}
+.gi-left{display:flex;align-items:center;gap:9px}
+.gi-icon{font-size:20px}
+.gi-name{font-size:13px;font-weight:800}
+.gi-date{font-size:10px;color:var(--text2)}
+.gi-amount{font-size:15px;font-weight:900;color:var(--red)}
+.gi-del{background:none;border:none;font-size:17px;cursor:pointer;color:var(--text2)}
+.btn-add-gider{width:100%;background:white;border:2px dashed var(--green);border-radius:13px;padding:12px;font-size:13px;font-weight:900;font-family:inherit;color:var(--green);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px}
+
+/* AYLIK RAPOR */
+.rapor-ay-header{background:linear-gradient(135deg,#4527A0,#7C4DFF);border-radius:var(--radius);color:white;padding:18px 16px;margin-bottom:13px;box-shadow:0 4px 18px rgba(69,39,160,.35)}
+.rapor-ay-title{font-size:11px;font-weight:800;opacity:.8;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.rapor-ay-name{font-size:22px;font-weight:900;margin-bottom:12px}
+.rapor-ay-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.rapor-ay-item{background:rgba(255,255,255,.18);border-radius:12px;padding:10px 12px}
+.rapor-ai-label{font-size:10px;font-weight:700;opacity:.8;margin-bottom:2px}
+.rapor-ai-val{font-size:18px;font-weight:900}
+
+.rapor-section{background:white;border-radius:var(--radius);padding:15px;box-shadow:var(--shadow);margin-bottom:13px}
+.rapor-section-title{font-size:12px;font-weight:900;color:var(--text2);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+
+/* DONUT CHART */
+.donut-wrap{display:flex;align-items:center;gap:16px}
+.donut-svg{flex-shrink:0}
+.donut-legend{flex:1}
+.legend-item{display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:12px;font-weight:700}
+.legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.legend-val{font-size:13px;font-weight:900;color:var(--text)}
+.legend-pct{font-size:10px;color:var(--text2)}
+
+/* HAFTALAR TABLOSU */
+.hafta-tablo{width:100%;border-collapse:collapse;font-size:12px}
+.hafta-tablo th{text-align:left;font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;padding:4px 6px;border-bottom:1px solid var(--gray2)}
+.hafta-tablo td{padding:7px 6px;border-bottom:1px solid var(--gray2);font-weight:700}
+.hafta-tablo tr:last-child td{border-bottom:none}
+.hafta-tablo .val-green{color:var(--green-dark);font-weight:900}
+.hafta-tablo .val-blue{color:var(--blue);font-weight:900}
+
+/* EN İYİ / EN KÖTÜ */
+.ek-row{display:flex;gap:9px;margin-bottom:13px}
+.ek-card{flex:1;border-radius:14px;padding:13px;display:flex;flex-direction:column;gap:4px}
+.ek-card.best{background:linear-gradient(135deg,#E8F5E9,#C8E6C9);border:1.5px solid #A5D6A7}
+.ek-card.worst{background:linear-gradient(135deg,#FFF8E1,#FFECB3);border:1.5px solid #FFE082}
+.ek-card .ek-icon{font-size:20px}
+.ek-card .ek-label{font-size:10px;font-weight:800;color:var(--text2);text-transform:uppercase;letter-spacing:.5px}
+.ek-card .ek-date{font-size:12px;font-weight:900;color:var(--text)}
+.ek-card .ek-val{font-size:15px;font-weight:900}
+
+/* WA AY PAYLAS */
+.wa-ay-btn{width:100%;background:linear-gradient(135deg,#128C7E,#25D366);color:white;border:none;border-radius:15px;padding:15px;font-size:15px;font-weight:900;font-family:inherit;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:.4px;box-shadow:0 4px 14px rgba(37,211,102,.35)}
+
+/* AY SEÇİCİ */
+.ay-secici{display:flex;align-items:center;justify-content:space-between;background:white;border-radius:13px;padding:10px 14px;box-shadow:var(--shadow);margin-bottom:13px}
+.ay-secici button{background:var(--gray2);border:none;border-radius:8px;padding:6px 12px;font-size:16px;cursor:pointer;font-weight:900}
+.ay-secici .ay-text{font-size:14px;font-weight:900;color:var(--text)}
+
+/* AYARLAR */
+.settings-section{background:white;border-radius:var(--radius);padding:15px;box-shadow:var(--shadow);margin-bottom:13px}
+.settings-section h3{font-size:12px;font-weight:900;color:var(--text2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:13px;display:flex;align-items:center;gap:5px}
+.settings-row{display:flex;align-items:center;justify-content:space-between;padding:11px 0;border-bottom:1px solid #f5f5f5}
+.settings-row:last-child{border-bottom:none}
+.sr-left{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700}
+.sr-icon{font-size:19px}
+.sr-right{font-size:12px;font-weight:800;cursor:pointer;color:var(--green)}
+.profile-row{display:flex;align-items:center;gap:13px;padding:13px;background:white;border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:13px}
+.profile-avatar{width:54px;height:54px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.profile-info h3{font-size:15px;font-weight:900}
+.profile-info p{font-size:12px;color:var(--text2);font-weight:600}
+.kdv-result{background:var(--green-light);border-radius:11px;padding:11px;margin-top:9px;font-size:13px;font-weight:700;color:var(--green-dark)}
+
+/* ŞİRKET SEÇİM */
+.sirket-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.sirket-card{border:2.5px solid var(--gray2);border-radius:15px;padding:13px 9px;cursor:pointer;text-align:center;transition:all .2s;background:white;position:relative}
+.sirket-card.selected{border-color:var(--green);background:var(--green-light);box-shadow:0 0 0 3px rgba(76,175,80,.18)}
+.check-badge{position:absolute;top:7px;right:7px;background:var(--green);color:white;border-radius:50%;width:19px;height:19px;font-size:11px;display:none;align-items:center;justify-content:center}
+.sirket-card.selected .check-badge{display:flex}
+.sirket-logo-box{width:52px;height:52px;border-radius:13px;margin:0 auto 7px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:white;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.sirket-logo-box img{width:44px;height:44px;object-fit:contain}
+.emoji-logo{font-size:28px}
+.sirket-name{font-size:11px;font-weight:900;color:var(--text)}
+.sirket-type{font-size:9px;color:var(--text2);margin-top:2px;font-weight:700}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:300;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);width:100%;max-width:480px;background:white;border-radius:22px 22px 0 0;z-index:301;transition:transform .35s cubic-bezier(.4,0,.2,1);max-height:92vh;overflow-y:auto;padding-bottom:28px}
+.modal.open{transform:translateX(-50%) translateY(0)}
+.modal-handle{width:38px;height:4px;background:#ddd;border-radius:99px;margin:11px auto 0}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:13px 16px 9px;border-bottom:1px solid #f0f0f0}
+.modal-header h2{font-size:17px;font-weight:900}
+.modal-close{background:var(--gray2);border:none;border-radius:50%;width:31px;height:31px;font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.modal-body{padding:14px 16px}
+.kategori-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:13px}
+.kategori-btn{background:var(--gray);border:2px solid transparent;border-radius:11px;padding:11px 7px;font-size:13px;font-weight:800;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:7px;transition:all .15s}
+.kategori-btn.selected{border-color:var(--green);background:var(--green-light);color:var(--green-dark)}
+.ki{font-size:19px}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:white;border-top:1px solid #eee;display:flex;z-index:100;padding-bottom:env(safe-area-inset-bottom)}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:9px 0 7px;cursor:pointer;gap:2px;transition:color .15s}
+.nav-icon{font-size:20px}
+.nav-label{font-size:9px;font-weight:800;color:var(--text2)}
+.nav-item.active .nav-label{color:var(--green)}
+
+/* TOAST */
+.toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(16px);background:#222;color:white;padding:11px 22px;border-radius:99px;font-size:13px;font-weight:800;z-index:999;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.empty-state{text-align:center;padding:36px 18px;color:var(--text2)}
+.empty-state .emoji{font-size:44px;margin-bottom:10px}
+.empty-state p{font-size:13px;font-weight:700}
+.tab-content{display:none}
+.tab-content.active{display:block}
+</style>
 </head>
 <body>
 
-<div class="tabs">
-    <div class="tab active" onclick="go('list')">📝 LİSTE</div>
-    <div class="tab" onclick="go('setup')">⚙️ ETAP AYAR</div>
-    <div class="tab" onclick="go('map')">📍 HARİTA</div>
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <button class="hamburger-btn" onclick="toggleSidebar()">☰</button>
+    <div class="topbar-logo" id="topbarLogoBox"></div>
+    <div class="topbar-titles">
+      <h1>kolay gelsin</h1>
+      <div class="topbar-company" id="topbarCompanyName">Şirket seçilmedi</div>
+    </div>
+  </div>
+  <div class="topbar-icons">
+    <span onclick="switchTab('ayarlar')">⚙️</span>
+    <span>🔔</span>
+  </div>
 </div>
 
-<div id="page-list" class="page active">
-    <div class="card">
-        <h3>🚀 SERİ MÜŞTERİ GİRİŞİ</h3>
-        <p style="font-size: 11px; color: #64748b; margin: 0 0 5px 0;">Ali A1 şeklinde alt alta yapıştırın.</p>
-        <textarea id="seriIn" placeholder="ALİ A1&#10;VELİ B1..." oninput="UB(this)"></textarea>
-        <button onclick="autoProcess()">LİSTEYİ SİSTEME EKLE</button>
+<!-- SIDEBAR -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo-row">
+      <div class="sidebar-logo-circle" id="sidebarLogoBox"></div>
+      <div>
+        <h2>kolay gelsin</h2>
+        <div class="sidebar-company-name" id="sidebarCompanyName">—</div>
+        <div class="sidebar-version">Kurye Takip v2.0</div>
+      </div>
     </div>
-    <div id="renderArea"></div>
-    <button style="background:none; border:1px solid var(--kirmizi); color:var(--kirmizi); margin-top:20px; padding:12px; font-size:12px;" onclick="resetList()">GÜNÜ TEMİZLE</button>
-</div>
-
-<div id="page-setup" class="page">
-    <div class="card">
-        <h3>1. YENİ ETAP & GÜZERGAH SIRA</h3>
-        <input type="text" id="etapAd" placeholder="ETAP ADI (Örn: 1. ETAP)" oninput="UB(this)">
-        
-        <p style="font-size: 11px; font-weight: bold; margin: 10px 0 0 0;">GÜZERGAH SIRASI SEÇ:</p>
-        <div class="sira-grid" id="siraPanel"></div>
-
-        <input type="file" id="etapDosya" accept="image/*">
-        <button onclick="saveEtap()">ETABI KAYDET</button>
-    </div>
-    <div class="card">
-        <h3>2. BLOK KONUMLARI</h3>
-        <select id="setupSel"></select>
-        <button style="background:#475569" onclick="startEdit()">HARİTADA BLOKLARI İŞARETLE</button>
-    </div>
-</div>
-
-<div id="page-map" class="page" style="padding:0;">
-    <div class="h-bar">
-        <select id="mapSel" onchange="loadMap()"></select>
-        <div id="modL" style="font-size:10px; color:var(--kirmizi); font-weight:bold;"></div>
-    </div>
-    <div class="fab">
-        <div class="btn-circle" onclick="zoom(0.3)">+</div>
-        <div class="btn-circle" onclick="zoom(-0.3)">-</div>
-        <div id="btnOK" class="btn-circle" style="background:var(--yesil); color:white; display:none;" onclick="stopEdit()">OK</div>
-    </div>
-    <div id="pop">
-        <div id="popB" style="font-weight:bold; font-size:20px; color:var(--kirmizi);"></div>
-        <div id="popI" style="font-size:24px; margin:15px 0; font-weight:bold; text-align:left;"></div>
-        <button id="btnTeslim" style="background:var(--yesil); padding:18px;">✓ TESLİM EDİLDİ</button>
-        <button onclick="document.getElementById('pop').style.display='none'" style="background:#94a3b8; margin-top:10px;">KAPAT</button>
-    </div>
-    <div class="viewport">
-        <div class="canvas" id="zemin">
-            <img src="" id="mapImg" onclick="mapClick(event)">
-        </div>
-    </div>
-</div>
-
-<script>
-    let idb;
-    const req = indexedDB.open("BurukSadeDB", 1);
-    req.onupgradeneeded = e => e.target.result.createObjectStore("maps", {keyPath: "id"});
-    req.onsuccess = e => { idb = e.target.result; startup(); };
-
-    let db = JSON.parse(localStorage.getItem('buruk_v41_data')) || { etaps: {}, items: [] };
-    let mod = "view", sc = 0.8, selSira = 1, curBlok = "";
-
-    function UB(el) { el.value = el.value.toLocaleUpperCase('tr-TR'); }
-    function save() { localStorage.setItem('buruk_v41_data', JSON.stringify(db)); }
-
-    function siraPanelKur() {
-        const p = document.getElementById('siraPanel'); p.innerHTML = "";
-        for(let i=1; i<=10; i++){
-            const b = document.createElement('div');
-            b.className = `sira-btn ${i === selSira ? 'active' : ''}`;
-            b.innerText = i;
-            b.onclick = () => { selSira = i; siraPanelKur(); };
-            p.appendChild(b);
-        }
-    }
-
-    // OTOMATİK ETAP AYIRMA (Müşteride etap seçme yok)
-    function autoProcess() {
-        const txt = document.getElementById('seriIn').value.trim().toLocaleUpperCase('tr-TR');
-        if(!txt) return;
-
-        txt.split('\n').forEach(line => {
-            const p = line.trim().split(/\s+/);
-            if(p.length < 2) return;
-            const bl = p.pop(); const is = p.join(" ");
-            
-            // Tüm etapları tara, bu blok hangisinde kayıtlı bak
-            let foundE = null;
-            for(let e in db.etaps) {
-                let tire = bl.includes('-') ? bl : bl[0]+'-'+bl.slice(1);
-                if(db.etaps[e].blks[bl] || db.etaps[e].blks[tire]) {
-                    foundE = e; break;
-                }
-            }
-            if(foundE) db.items.push({ is, bl, et: foundE, st: 'wait' });
-            else alert(bl + " BLOĞU HİÇBİR ETAPTA BULUNAMADI! Önce Etap Ayar'dan işaretleyin.");
-        });
-        save(); renderList(); document.getElementById('seriIn').value = "";
-    }
-
-    function renderList() {
-        const m = document.getElementById('renderArea'); m.innerHTML = "";
-        const g = {};
-        db.items.forEach(t => { if(!g[t.et]) g[t.et] = []; g[t.et].push(t); });
-        
-        Object.keys(g).sort((a,b) => db.etaps[a].sira - db.etaps[b].sira).forEach(et => {
-            let h = `<div class="etap-baslik"><span>${db.etaps[et].sira}. ${et}</span> <span>${g[et].length} PAKET</span></div>`;
-            g[et].forEach((t, i) => {
-                h += `<div class="liste-oge ${t.st==='done'?'done':''}">
-                    <span>${t.is} <br><small style="color:var(--mavi)">${t.bl}</small></span>
-                    <button style="width:auto; background:var(--kirmizi); padding:6px 12px; border-radius:8px;" onclick="delItem('${t.is}','${t.bl}')">X</button>
-                </div>`;
-            });
-            m.innerHTML += h;
-        });
-    }
-
-    function saveEtap() {
-        const n = document.getElementById('etapAd').value.trim().toUpperCase();
-        const f = document.getElementById('etapDosya').files[0];
-        if(!n || !f) return alert("Eksik bilgi!");
-        const r = new FileReader();
-        r.onload = e => {
-            const tx = idb.transaction("maps", "readwrite");
-            tx.objectStore("maps").put({id: n, data: e.target.result});
-            db.etaps[n] = { blks: {}, sira: selSira };
-            save(); selectors(); alert("Etap Kaydedildi.");
-            document.getElementById('etapAd').value = "";
-        };
-        r.readAsDataURL(f);
-    }
-
-    function selectors() {
-        const ads = Object.keys(db.etaps).sort((a,b) => db.etaps[a].sira - db.etaps[b].sira);
-        const h = ads.length > 0 ? ads.map(e => `<option value="${e}">${e}</option>`).join("") : "<option>Harita Yok</option>";
-        document.getElementById('setupSel').innerHTML = h;
-        document.getElementById('mapSel').innerHTML = h;
-    }
-
-    async function loadMap() {
-        const et = document.getElementById('mapSel').value;
-        if(!et) return;
-        const tx = idb.transaction("maps", "readonly");
-        const r = tx.objectStore("maps").get(et);
-        r.onsuccess = () => { if(r.result) { document.getElementById('mapImg').src = r.result.data; setTimeout(draw, 100); } };
-    }
-
-    function draw() {
-        const et = document.getElementById('mapSel').value;
-        const z = document.getElementById('zemin');
-        z.querySelectorAll('.pin').forEach(e=>e.remove());
-        const gr = {};
-        db.items.forEach(t => { if(t.et === et) { if(!gr[t.bl]) gr[t.bl] = {is:[], st:t.st}; gr[t.bl].is.push(t.is); if(t.st==='wait') gr[t.bl].st='wait'; } });
-
-        Object.keys(gr).forEach(bl => {
-            const b = db.etaps[et].blks[bl] || db.etaps[et].blks[bl.includes('-')?bl:bl[0]+'-'+bl.slice(1)];
-            if(b) {
-                const p = document.createElement('div');
-                p.className = 'pin ' + (gr[bl].st === 'done' ? 'done' : '');
-                p.style.left = b.x+"%"; p.style.top = b.y+"%";
-                p.innerText = bl.charAt(0);
-                p.onclick = e => {
-                    e.stopPropagation(); curBlok = bl;
-                    document.getElementById('popB').innerText = bl;
-                    document.getElementById('popI').innerHTML = gr[bl].is.join("<br>");
-                    document.getElementById('btnTeslim').style.display = gr[bl].st==='done'?'none':'block';
-                    document.getElementById('pop').style.display = 'block';
-                };
-                z.appendChild(p);
-            }
-        });
-    }
-
-    document.getElementById('btnTeslim').onclick = () => {
-        const et = document.getElementById('mapSel').value;
-        db.items.forEach(t => { if(t.bl === curBlok && t.et === et) t.st = 'done'; });
-        save(); draw(); renderList(); document.getElementById('pop').style.display = 'none';
-    };
-
-    function mapClick(e) {
-        if(mod !== "edit") return;
-        const r = document.getElementById('mapImg').getBoundingClientRect();
-        const x = ((e.clientX - r.left) / r.width) * 100;
-        const y = ((e.clientY - r.top) / r.height) * 100;
-        let b = prompt("BLOK ADINI YAZIN:").toLocaleUpperCase('tr-TR');
-        if(b) { db.etaps[document.getElementById('mapSel').value].blks[b] = {x,y}; save(); draw(); }
-    }
-
-    function go(s) {
-        document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-        document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-        document.getElementById('page-'+s).classList.add('active');
-        event.currentTarget.classList.add('active');
-        if(s==='map') loadMap(); else mod="view";
-    }
-
-    function zoom(v) { sc = Math.min(Math.max(sc+v, 0.15), 3.5); document.getElementById('zemin').style.transform=`scale(${sc})`; }
-    function startEdit() { mod="edit"; go('map'); document.getElementById('modL').innerText="DÜZENLEME AKTİF"; document.getElementById('btnOK').style.display="flex"; }
-    function stopEdit() { mod="view"; document.getElementById('modL').innerText=""; document.getElementById('btnOK').style.display="none"; }
-    function delItem(is, bl) { db.items = db.items.filter(t => !(t.is===is && t.bl===bl)); save(); renderList(); }
-    function resetList() { if(confirm("Tüm listeyi temizle?")) { db.items = []; save(); renderList(); } }
-    function startup() { siraPanelKur(); selectors(); renderList(); }
-</script>
-
-</body>
-</html>
+  </div>
+  <div class="sidebar-menu">
+    <div class="sidebar-item active" onclick="switchTab('anasayfa');toggleSidebar()"><span class="icon">🏠</span>Ana Sayfa</div>
+    <div class="sidebar-item" onclick="switchTab('teslimat');toggleSidebar()"><span class="icon">🚀</span>Teslimat Girişi</div>
+    <div class="sidebar-item" onclick="switchTab('gecmis');toggleSidebar()"><span class="icon">📋</span>Geçmiş</div>
+    <div class="sidebar-item" onclick="switchTab('ozet');toggleSidebar()"><span class="icon">📊</span>Aylık Özet</div>
+    <div 
